@@ -13,7 +13,7 @@ __Probability of occurrence (%) of an algal bloom from two weeks ago (left) and 
 
 ## Hotspot Analysis - Chlorophyll-a
 This map shows you the latest estimates of __chlorophyll-a__ from the Sentinel 2a satellite. Note that the color scale is normalized to highlight the hotspots in the image relative to yearly maxima and minima. The colorscale does not provide an indication of the absolute amount of chlorophyll-a in the water and should be interpreted as an "index" of chlorophyll-a.
-![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/{shrink_date}/Fig_chla_week.png){:             width="600px"}{: .align-center}
+![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/{shrink_date}/Fig_chla.png){:             width="600px"}{: .align-center}
 <br clear="all" />
 __Latest chlorophyll-a map from the Sentinel 2a satelllite.__
 
