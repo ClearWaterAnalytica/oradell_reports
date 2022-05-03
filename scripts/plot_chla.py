@@ -62,15 +62,17 @@ x = x[ID]; y = y[ID]; z = np.exp(z[ID])
 z = z / z.max()
 z = np.round(z * 100)
 
-data = {'x': x,
+df = {'x': x,
         'y': y,
         'z': z}
-df = pd.DataFrame(data)
+df = pd.DataFrame(df)
 
 import plotly.figure_factory as ff
 import plotly.express as px
 
 px.set_mapbox_access_token(open(".mapbox_token").read())
+date_time = data.date[0].strftime("%m/%d/%Y")
+title = "Chlorophyll-a Index (Sentinel 2a): " + date_time
 
 fig = ff.create_hexbin_mapbox(
     data_frame=df, lat="y", lon="x", color="z",
@@ -78,6 +80,7 @@ fig = ff.create_hexbin_mapbox(
 	range_color=[0,100],
 	labels={"color": "Chl-a Index"},agg_func=np.mean,color_continuous_scale="jet")
 
+fig.update_layout(title_text=title,title_y=0.92,title_x=0.2)
 #fig.update_layout(mapbox_style='open-street-map')
 fig.update_layout(mapbox_style="satellite")
 fig.write_image("Figs/Fig_chla.png",scale=2)

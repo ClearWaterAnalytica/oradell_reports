@@ -61,21 +61,24 @@ ID = np.where(z!=0)[0]
 x = x[ID]; y = y[ID]; z = np.exp(z[ID])
 
 
-data = {'x': x,
+df = {'x': x,
         'y': y,
         'z': z}
-df = pd.DataFrame(data)
+df = pd.DataFrame(df)
 
 import plotly.figure_factory as ff
 import plotly.express as px
 
 px.set_mapbox_access_token(open(".mapbox_token").read())
+date_time = data.date[0].strftime("%m/%d/%Y")
+title = "CyAN (cells per ml): " + date_time
 
 fig = ff.create_hexbin_mapbox(
     data_frame=df, lat="y", lon="x", color="z",
     nx_hexagon=20, opacity=0.5,
 	range_color=[6000,100000],
 	labels={"color": "Cells/ml"},agg_func=np.mean,color_continuous_scale="jet")
+fig.update_layout(title_text=title,title_y=0.92,title_x=0.2)
 fig.update_layout(mapbox_style="satellite")
 fig.write_image("Figs/Fig_cyan.png",scale=2)
 #fig.show()
