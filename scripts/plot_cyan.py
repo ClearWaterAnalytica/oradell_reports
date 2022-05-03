@@ -19,7 +19,7 @@ from mpl_toolkits import axes_grid1
 ################ SATELLITE CHL-A ####################
 #path = "./Data/or_detroit_lake_dashboard/proc_dashboard_data/"
 #path = "./Data/tx_cedar_creek_reservoir_dashboard/proc_dashboard_data/"
-path = "./Data/nj_oradell_reservoir_dashboard_3/proc_dashboard_data/"
+path = "/tmp/nj_oradell_reservoir_dashboard/proc_dashboard_data/"
 files = sorted(glob.glob(path+"cyan_map/*.csv"))
 
 ##! find colorbounds
