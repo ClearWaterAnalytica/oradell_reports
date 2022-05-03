@@ -7,12 +7,12 @@ tags:
   - prediction
 ---
 ## 7-day Look Ahead Bloom Forecast
-Below are pie charts describing the __probability of a cyanobacterial bloom__. The one on the left describes the predictions from two weeks ago, and the one on the right describes the latest prediction, for the coming week. 
+Below are pie charts describing the __probability of a cyanobacterial bloom__. The chart on the left describes the predictions from two weeks ago, and the one on the right describes the latest prediction, for the coming week. 
 ![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/{shrink_date}/Fig_prediction.png)
 __Probability of occurrence (%) of an algal bloom from two weeks ago (left) and for the next 7 days (right).__
 
 ## Hotspot Analysis - Chlorophyll-a
-This map shows you the latest estimates of __chlorophyll-a__ from the Sentinel 2a satellite. Note that the color scale is normalized to highlight the hotspots in the image relative to yearly maxima and minima. The colorscale does not provide an indication of the absolute amount of chlorophyll-a in the water and should be interpreted as an "index" of chlorophyll-a.
+This map shows you the latest estimates of __chlorophyll-a__ from the Sentinel 2a satellite. Note that the color scale is normalized to highlight the hotspots in the image. The colorscale does not provide an indication of the absolute amount of chlorophyll-a in the water and should be interpreted as an "index" of chlorophyll-a (zero being low, and 100 being high).
 ![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/{shrink_date}/Fig_chla.png){:             width="600px"}{: .align-center}
 <br clear="all" />
 __Latest chlorophyll-a map from the Sentinel 2a satelllite.__
@@ -22,7 +22,6 @@ This map shows you the latest estimates of the concentration of cyanobacteria (c
 ![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/{shrink_date}/Fig_cyan.png){: width="600px"}{: .align-center}
 <br clear="all" />
 __Latest CyAN map from the EPA.__
-
 
 ## Where we are in the season
 This plot shows the __historical expectation for HAB risk__ over the year. Use this chart to see where we are in the season (identified by the vertical red line). 
