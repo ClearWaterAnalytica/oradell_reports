@@ -20,7 +20,7 @@ from mpl_toolkits import axes_grid1
 #path = "./Data/or_detroit_lake_dashboard/proc_dashboard_data/"
 #path = "./Data/tx_cedar_creek_reservoir_dashboard/proc_dashboard_data/"
 path = "./Data/nj_oradell_reservoir_dashboard_3/proc_dashboard_data/"
-files = sorted(glob.glob(path+"cyan_map/*.csv"))
+files = sorted(glob.glob(path+"satellite_map/*.csv"))
 
 ##! find colorbounds
 #chl_min = [] 
@@ -47,7 +47,7 @@ lats = data["lat"]
 df = data.copy()
 for i in np.arange(-X,-1):
     df1 = pd.read_csv(files[i],parse_dates=["date"])
-    df["log_CI_cells_mL"] = (df["log_CI_cells_mL"] + griddata((df1["lon"],df1["lat"]), df1["log_CI_cells_mL"],(lons, lats), method='nearest')) / 2
+    df["Chlorophyll"] = (df["Chlorophyll"] + griddata((df1["lon"],df1["lat"]), df1["Chlorophyll"],(lons, lats), method='nearest'))
 
 
 
@@ -56,10 +56,11 @@ for i in np.arange(-X,-1):
 #! Data to plot
 x = np.asarray(df.lon)
 y = np.asarray(df.lat)
-z = np.asarray(df.log_CI_cells_mL)
+z = np.asarray(df.Chlorophyll)
 ID = np.where(z!=0)[0]
 x = x[ID]; y = y[ID]; z = np.exp(z[ID])
-
+z = z / z.max()
+z = np.round(z * 100)
 
 data = {'x': x,
         'y': y,
@@ -73,11 +74,13 @@ px.set_mapbox_access_token(open(".mapbox_token").read())
 
 fig = ff.create_hexbin_mapbox(
     data_frame=df, lat="y", lon="x", color="z",
-    nx_hexagon=20, opacity=0.5,
-	range_color=[6000,100000],
-	labels={"color": "Cells/ml"},agg_func=np.mean,color_continuous_scale="jet")
+    nx_hexagon=70, opacity=0.5, 
+	range_color=[0,100],
+	labels={"color": "Chl-a Index"},agg_func=np.mean,color_continuous_scale="jet")
+
+#fig.update_layout(mapbox_style='open-street-map')
 fig.update_layout(mapbox_style="satellite")
-fig.write_image("Figs/Fig_cyan.png",scale=2)
-#fig.show()
+fig.write_image("Figs/Fig_chla.png",scale=2)
+plt.close("all")
 
 

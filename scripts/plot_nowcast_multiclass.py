@@ -38,44 +38,56 @@ rvb = make_colormap(
 
 ######################! Data
 #path = "./Data/or_detroit_lake_dashboard/proc_dashboard_data/"
-path = "/tmp/nj_oradell_reservoir_dashboard/proc_dashboard_data/"
+path = "./Data/nj_oradell_reservoir_dashboard_3/proc_dashboard_data/"
 pwd = path+"now_cast_tab/"
-data = pd.read_csv(pwd + "nj_oradell_reservoir_nowcast_current_predictions.csv",parse_dates=["date"])
-#data = pd.read_csv(pwd + "or_detroit_lake_nowcast_predictions.csv",parse_dates=["date"])
-lag = 14
+data = pd.read_csv(pwd + "nj_oradell_reservoir_nowcast_multiclass_predictions_current.csv",parse_dates=["date"])
+lag = 14 #number of days to look behind
+probs_14 = np.asarray([data.iloc[[-lag]]['none_bloom_p'],data.iloc[[-lag]]['low_bloom_p'],\
+			data.iloc[[-lag]]['mid_bloom_p'],data.iloc[[-lag]]['high_bloom_p']])
+probs_1 = np.asarray([data.iloc[[-1]]['none_bloom_p'],data.iloc[[-1]]['low_bloom_p'],\
+			data.iloc[[-1]]['mid_bloom_p'],data.iloc[[-1]]['high_bloom_p']])
+
 
 ######################! Plot double pie
 fig, (ax1,ax2) = plt.subplots(1,2,figsize=(13,5))
 
-labels = ('No Bloom', 'Bloom')
-probs  = np.asarray([data.iloc[-lag]["bloom_1_p"],data.iloc[-lag]["bloom_p"]])
+labels = ('Low Levels', 'Algae Present', 'Algal Bloom')
+probs  = probs_14.flatten()
+probs = [probs[0],probs[1]+probs[2],probs[3]]
+probs = probs / np.sum(probs)
 sizes  = probs * 100
 explode = np.ones(len(sizes))*0.03
-colors = cm.Greens([0.2,0.5])
-patches, texts, autotexts = ax1.pie(sizes, colors = colors, labels=labels, autopct='%1.1f%%', startangle=5, pctdistance=0.8, explode = explode)
+colors = cm.Greens(np.linspace(0.15,.7,len(probs)))
+patches, texts, autotexts = ax1.pie(sizes, colors = colors, labels=labels, autopct='%1.1f%%', startangle=95, pctdistance=0.8, explode = explode)
 texts[0].set_fontsize(14)
 texts[1].set_fontsize(14)
+texts[2].set_fontsize(14)
+#texts[3].set_fontsize(14)
 centre_circle = plt.Circle((0,0),0.30,fc='white')
 ax1.add_artist(centre_circle)
 ax1.axis('equal')  
-ax1.annotate('-'+str(lag)+" days",
+ax1.annotate('-14days',
     xy=(0, 0),  # theta, radius
     horizontalalignment='center',
     verticalalignment='center',
     color='k',zorder=21,fontsize=23)
 
-labels = ('No Bloom', 'Bloom')
-probs  = np.asarray([data.iloc[-1]["bloom_1_p"],data.iloc[-1]["bloom_p"]])
+labels = ('No Detection', 'Algae Present', 'Algal Bloom')
+probs  = probs_1.flatten()
+probs = [probs[0],probs[1]+probs[2],probs[3]]
+probs = probs / np.sum(probs)
 sizes  = probs * 100
 explode = np.ones(len(sizes))*0.03
-colors = cm.Reds([0.2,0.5])
-patches, texts, autotexts = ax2.pie(sizes, colors = colors, labels=labels, autopct='%1.1f%%', startangle=5, pctdistance=0.8, explode = explode)
+colors = cm.Reds(np.linspace(0.15,.7,len(probs)))
+patches, texts, autotexts = ax2.pie(sizes, colors = colors, labels=labels, autopct='%1.1f%%', startangle=95, pctdistance=0.8, explode = explode)
 texts[0].set_fontsize(14)
 texts[1].set_fontsize(14)
+texts[2].set_fontsize(14)
+#texts[3].set_fontsize(14)
 centre_circle = plt.Circle((0,0),0.30,fc='white')
 ax2.add_artist(centre_circle)
-ax2.axis('equal')  
-ax2.annotate('+7 days',
+ax2.axis('equal')
+ax2.annotate('+7days',
     xy=(0, 0),  # theta, radius
     horizontalalignment='center',
     verticalalignment='center',
