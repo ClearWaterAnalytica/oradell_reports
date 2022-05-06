@@ -13,6 +13,7 @@ from PIL import Image
 from scipy.interpolate import griddata
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from mpl_toolkits import axes_grid1
+import os
 
 from pydoc import importfile
 
