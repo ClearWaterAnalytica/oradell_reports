@@ -18,7 +18,7 @@ from pydoc import importfile
 
 mapbox = importfile('/home/ubuntu/.mapbox/credentials')
 
-MAPBOX_KEY = mapbox.mapbox.id
+MAPBOX_KEY = mapbox.mapbox_id
 
 ################ SATELLITE CHL-A ####################
 #path = "./Data/or_detroit_lake_dashboard/proc_dashboard_data/"
