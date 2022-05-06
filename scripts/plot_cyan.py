@@ -76,7 +76,7 @@ df = pd.DataFrame(df)
 import plotly.figure_factory as ff
 import plotly.express as px
 
-px.set_mapbox_access_token(MAPBOX_KEY).read()
+px.set_mapbox_access_token(MAPBOX_KEY)
 date_time = data.date[0].strftime("%m/%d/%Y")
 title = "CyAN (cells per ml): " + date_time
 
