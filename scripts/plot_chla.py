@@ -16,7 +16,9 @@ from mpl_toolkits import axes_grid1
 
 from pydoc import importfile
 
-mapbox = importfile('/home/ubuntu/.mapbox/credentials')
+username =  os.environ.get('USER')
+
+mapbox = importfile(f"/home/{username}/.mapbox/credentials")
 
 MAPBOX_KEY = mapbox.mapbox_id
 
