@@ -12,11 +12,11 @@ Click here to see the live and interactive [Harmful Algal Bloom dashboard](https
 ## 7-day Look Ahead Bloom Forecast
 Below are pie charts describing the __probability of a cyanobacterial bloom__. The chart on the left describes the predictions from two weeks ago, and the one on the right describes the latest prediction, for the coming week. 
 ![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/{shrink_date}/Fig_prediction.png)
-__Probability of occurrence (%) of an algal bloom from two weeks ago (left) and for the next 7 days (right).__
+__Probabilities of occurrence (%) of an algal bloom from two weeks ago (left) and for the next 7 days (right).__
 
 ## Hotspot Analysis - Chlorophyll-a
 This map shows you the latest estimates of __chlorophyll-a__ from the Sentinel 2a satellite. Note that the color scale is normalized to highlight the hotspots in the image. The colorscale does not provide an indication of the absolute amount of chlorophyll-a in the water and should be interpreted as an "index" of chlorophyll-a (zero being low, and 100 being high).
-![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/{shrink_date}/Fig_chla_week.png){:             width="600px"}{: .align-center}
+![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/{shrink_date}/Fig_chla.png){:             width="600px"}{: .align-center}
 <br clear="all" />
 __Latest chlorophyll-a map from the Sentinel 2a satelllite.__
 
