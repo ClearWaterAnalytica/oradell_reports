@@ -52,12 +52,15 @@ X = 3; # number of trailing days to average over
 lons = data["lon"]
 lats = data["lat"]
 df = data.copy()
+allCyan = df["log_CI_cells_mL"].to_numpy().reshape((-1,1))
+
+# get lagged readings
 for i in np.arange(-X,-1):
     df1 = pd.read_csv(files[i],parse_dates=["date"])
-    oldCyan = df["log_CI_cells_mL"].to_numpy().reshape((-1,1))
     newCyan = griddata((df1["lon"],df1["lat"]), df1["log_CI_cells_mL"],(lons, lats), method='nearest').reshape((-1,1))
-    df["log_CI_cells_mL"] = np.nansum(np.hstack([oldCyan, newCyan]), 1) / 2
+    allCyan = np.hstack([allCyan, newCyan])
 
+df["log_CI_cells_mL"] = np.nanmean(allCyan, 1)
 
 
 
