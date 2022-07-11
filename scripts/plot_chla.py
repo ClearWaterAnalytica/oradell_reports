@@ -54,7 +54,9 @@ lats = data["lat"]
 df = data.copy()
 for i in np.arange(-X,-1):
     df1 = pd.read_csv(files[i],parse_dates=["date"])
-    df["Chlorophyll"] = (df["Chlorophyll"] + griddata((df1["lon"],df1["lat"]), df1["Chlorophyll"],(lons, lats), method='nearest'))
+    oldChl = df["Chlorophyll"].to_numpy().reshape((-1,1))
+    newChl = griddata((df1["lon"],df1["lat"]), df1["Chlorophyll"],(lons, lats), method='nearest').reshape((-1,1))
+    df["Chlorophyll"] = np.nansum(np.hstack([oldChl, newChl]), 1)
 
 
 
