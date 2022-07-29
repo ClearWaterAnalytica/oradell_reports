@@ -68,11 +68,13 @@ df["Chlorophyll"] = np.nanmean(allChl, 1)
 #! Data to plot
 x = np.asarray(df.lon)
 y = np.asarray(df.lat)
-z = np.asarray(df.Chlorophyll)
+z = np.asarray(np.log(1 + df.Chlorophyll))
 ID = np.where(z!=0)[0]
-x = x[ID]; y = y[ID]; z = np.exp(z[ID])
-z = z / z.max()
-z = np.round(z * 100)
+x = x[ID]
+y = y[ID]
+z = z[ID]
+#z = z / z.max()
+#z = np.round(z * 100)
 
 df = {'x': x,
         'y': y,
@@ -89,7 +91,7 @@ title = "Chlorophyll-a Index (Sentinel 2a): " + date_time
 fig = ff.create_hexbin_mapbox(
     data_frame=df, lat="y", lon="x", color="z",
     nx_hexagon=70, opacity=0.5, 
-	range_color=[0,100],
+	range_color=[0, 7.23],
 	labels={"color": "Chl-a Index"},agg_func=np.mean,color_continuous_scale="jet")
 
 fig.update_layout(title_text=title,title_y=0.92,title_x=0.2)
