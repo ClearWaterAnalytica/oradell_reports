@@ -42,3 +42,6 @@ We know that in general certain weather conditions promote the likelihood of HAB
 how __hot__ it is, relative to past years. This is simply adding up each day's temperature, for each year. If the red line is above the orange line, this year is hotter than average.
 ![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/20230130/Fig_temp_cumsum.png){: .     align-center}
 __Air temperature at the lake compared to previous years__.
+
+
+
