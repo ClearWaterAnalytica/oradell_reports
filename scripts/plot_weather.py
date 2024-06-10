@@ -17,11 +17,14 @@ lake_name = "nj_oradell_reservoir"
 
 lst_ = []
 for year_ in range(2010, current_year + 1):
-	print(year_)
-	df = pd.read_csv(f"s3://cwa-assets/{lake_name}/assets/weather_tab/{lake_name}_gridmet_{year_}.csv", parse_dates=["date"])
-	lst_.append(df)
+    print(year_)
+    df = pd.read_csv(f"s3://cwa-assets/{lake_name}/assets/weather_tab/{lake_name}_gridmet_{year_}.csv", parse_dates=["date"])
+    lst_.append(df)
 
 data = pd.concat(lst_)
+today = date.today()
+
+data = data.drop_duplicates().reset_index(drop=True)
 
 # ### CUMSUM WEATHER ###
 # #path = "./Data/or_detroit_lake_dashboard/proc_dashboard_data/"
