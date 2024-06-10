@@ -51,7 +51,7 @@ files = sorted(s3.glob(f"s3://cwa-assets/nj_oradell_reservoir/assets/satellite_m
 #chl_max = np.percentile(chl_max,95)
 
 #! Latest data
-data = pd.read_csv(f"s3://{files[-1]},parse_dates=["date"])
+data = pd.read_csv(f"s3://{files[-1]}",parse_dates=["date"])
 data["month"] = data["date"].dt.month
 data["week"] = data["date"].dt.week
 data["year"] = data["date"].dt.year
