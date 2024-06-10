@@ -25,7 +25,7 @@ today = date.today()
 #data = pd.read_csv(pwd + "or_detroit_lake_nowcast_expected_longrun_predictions.csv",parse_dates=["date"])
 # data = pd.read_csv(pwd + "nj_oradell_reservoir_nowcast_predictions_longrun_detect.csv",parse_dates=["date"])
 
-data = pd.read_csv(f"s3://cwa-assets/nj_oradell_reservoir/assets/now_cast_tab/or_detroit_lake_nowcast_predictions_longrun_detect.csv",parse_dates=["date"])
+data = pd.read_csv(f"s3://cwa-assets/nj_oradell_reservoir/assets/now_cast_tab/nj_oradell_reservoir_nowcast_predictions_longrun_detect.csv",parse_dates=["date"])
 
 
 data["month"] = data["date"].dt.month

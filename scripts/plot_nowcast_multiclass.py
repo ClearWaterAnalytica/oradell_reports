@@ -49,7 +49,7 @@ rvb = make_colormap(
 # pwd = path+"now_cast_tab/"
 # data = pd.read_csv(pwd + "nj_oradell_reservoir_nowcast_multiclass_predictions_current.csv",parse_dates=["date"])
 
-data = pd.read_csv(f"s3://cwa-assets/nj_oradell_reservoir/assets/now_cast_tab/or_detroit_lake_nowcast_multiclass_predictions_current.csv",parse_dates=["date"])
+data = pd.read_csv(f"s3://cwa-assets/nj_oradell_reservoir/assets/now_cast_tab/nj_oradell_reservoir_nowcast_multiclass_predictions_current.csv",parse_dates=["date"])
 
 
 lag = 14 #number of days to look behind
